@@ -1,0 +1,28 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <div style="margin-left:50px;font-family:sans-serif">
+    <h3> Listings</h3>
+    {% for auction in auctions %}
+      <div style= "height:550px; width: 475px ;border:10px 10px 10px 10px solid #dcdcdc :30px outline:none;float:left" >
+          <h3> {{auction.Title}}</h3>
+          <img src="{{auction.ImageURL}}" alt="{{auction.Title}}" width="350px" height="350px">
+         {{auction.description}} 
+          <div >
+          <ul style="list-style-type:none;">
+            <li> <a href= "/{{auction.id}}" style = "margin-left:5px; margin-right:5px"> Full here </a>
+            <li> <a href="/addcomment/{{auction.id}}" style = "margin-left:5px; margin-right:5px"> Add comment </a>
+            <li> <a href= "/placebid/{{auction.id}}" style = "margin-left:5px; margin-right:5px"> Place Bid </a>
+             {% if wishlist%}
+                <li> <a href= "/remove/{{auction.id}}" style = "margin-left:5px; margin-right:5px"> Remove from wishlist </a>
+             {% else%}
+                <li> <a href= "/wishlist/{{auction.id}}" style = "margin-left:5px; margin-right:5px"> Add to Wishlist </a> 
+             {% endif%}
+          </ul>
+          </div>
+          <h5> Price = $ {{auction.Startingbid}} USD</h5>
+      </div>
+    {%endfor%} </br>
+    </div></br>
+
+{% endblock %}
